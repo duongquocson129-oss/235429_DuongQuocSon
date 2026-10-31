@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: api-235429
+    runtime: docker
+    rootDir: backend
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      - key: MONGODB_URI
+        sync: false
+      - key: MONGODB_DB
+        value: 235429_DuongQuocSon
+      - key: FRONTEND_ORIGIN
+        value: https://web-235429.onrender.com
+
+  - type: web
+    name: web-235429
+    runtime: static
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: ./dist
+    envVars:
+      - key: VITE_API_BASE_URL
+        value: https://api-235429.onrender.com/api
