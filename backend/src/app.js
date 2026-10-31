@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const deviceRoutes = require('./devices/routes');
+const memoryRoutes = require('./devices/memoryRoutes');
 
 const app = express();
 const allowedOrigins = (process.env.FRONTEND_ORIGIN || 'http://localhost:5173')
@@ -12,6 +13,9 @@ app.use(cors({ origin: allowedOrigins }));
 app.use(express.json({ limit: '1mb' }));
 
 app.get('/health', (_req, res) => {
+  if (process.env.STORAGE_MODE === 'memory') {
+    return res.json({ status: 'ok', database: 'memory', persistence: 'ephemeral' });
+  }
   const database = mongoose.connection.readyState === 1 ? 'connected' : 'disconnected';
   res.status(database === 'connected' ? 200 : 503).json({
     status: database === 'connected' ? 'ok' : 'degraded',
@@ -19,7 +23,7 @@ app.get('/health', (_req, res) => {
   });
 });
 
-app.use('/api/devices', deviceRoutes);
+app.use('/api/devices', process.env.STORAGE_MODE === 'memory' ? memoryRoutes : deviceRoutes);
 
 app.use((req, res) => {
   res.status(404).json({ message: `Không tìm thấy endpoint ${req.path}.` });

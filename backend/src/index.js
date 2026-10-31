@@ -7,6 +7,10 @@ const database = process.env.MONGODB_DB || '235429_DuongQuocSon';
 
 app.listen(port, () => {
   console.log(`API đang chạy tại cổng ${port}`);
+  if (process.env.STORAGE_MODE === 'memory') {
+    console.log('Đang dùng chế độ bộ nhớ; dữ liệu không tồn tại sau khi khởi động lại.');
+    return;
+  }
   if (!process.env.MONGODB_URI) {
     console.error('Thiếu MONGODB_URI; API health sẽ báo database disconnected.');
     return;

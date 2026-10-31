@@ -59,17 +59,18 @@ Các trạng thái: `Đang sử dụng`, `Hư hỏng`, `Đang sửa chữa`, `Ng
 
 ## Docker
 
-Backend (không nhúng thông tin xác thực vào image):
+Backend image mặc định chạy chế độ demo trong bộ nhớ để có thể dùng API mà không cần cấu hình database. Dữ liệu mẫu có sẵn; thiết bị thêm vào sẽ mất khi container restart:
 
 ```sh
 docker build -t duongquocson/backend:latest ./backend
 docker push duongquocson/backend:latest
 docker run --rm -p 5000:5000 \
-	-e MONGODB_URI='mongodb+srv://<user>:<password>@<cluster>/' \
-	-e MONGODB_DB='235429_DuongQuocSon' \
+	-e STORAGE_MODE=memory \
 	-e FRONTEND_ORIGIN='http://localhost:8080' \
 	duongquocson/backend:latest
 ```
+
+Để dùng Atlas thay vì dữ liệu tạm, đặt `STORAGE_MODE=mongo` và cấu hình `MONGODB_URI`, `MONGODB_DB` bằng secret/biến môi trường; không đưa URI có credential vào image hay Git.
 
 Frontend được cấu hình địa chỉ API tại thời điểm build:
 
@@ -88,7 +89,7 @@ Database Atlas `235429_DuongQuocSon` và collection `devices` đã được xác
 
 ## Render
 
-`render.yaml` khai báo hai dịch vụ `api-235429` và `web-235429`. Tạo Blueprint từ repository, nhập `MONGODB_URI` dưới dạng secret khi Render yêu cầu. Sau khi triển khai, kiểm tra `/health` và CRUD trên URL được Render cấp.
+`render.yaml` khai báo hai dịch vụ `api-235429` và `web-235429`. Backend hiện dùng chế độ memory demo; dữ liệu mất khi Render restart. Muốn lưu bền trên Atlas, chuyển `STORAGE_MODE` sang `mongo` và nhập `MONGODB_URI` dưới dạng secret. Sau khi triển khai, kiểm tra `/health` và CRUD trên URL được Render cấp.
 
 - Frontend: `https://web-235429.onrender.com` (đã triển khai, HTTP 200)
 - Backend API: `https://api-235429.onrender.com` (cập nhật sau Câu 8)
