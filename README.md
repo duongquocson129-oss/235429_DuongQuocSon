@@ -57,6 +57,10 @@ Yêu cầu Node.js 20 trở lên và MongoDB Atlas (hoặc MongoDB tương thíc
 
 Các trạng thái: `Đang sử dụng`, `Hư hỏng`, `Đang sửa chữa`, `Ngừng sử dụng`.
 
+## Frontend React
+
+Giao diện cung cấp danh sách và tìm kiếm thiết bị, xem chi tiết, thêm, cập nhật và xóa thiết bị. Form hiển thị kiểm tra dữ liệu, trạng thái đang tải, lỗi và thông báo kết quả. Địa chỉ API có thể cấu hình qua `VITE_API_BASE_URL`.
+
 ## Docker
 
 Backend (không nhúng thông tin xác thực vào image):
