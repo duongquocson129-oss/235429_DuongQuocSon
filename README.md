@@ -82,7 +82,7 @@ Chỉ thay `<docker_username>` bằng tên Docker Hub của bạn. Đăng nhập
 
 ## MongoDB Atlas
 
-Tạo database `235429_DuongQuocSon` và collection `devices`. `npm run seed` tạo ba bản ghi mẫu (máy chiếu, máy tính, thiết bị âm thanh). Tạo database user riêng, giới hạn Network Access phù hợp, rồi đặt URI trong `backend/.env`; không commit `.env`.
+Database Atlas `235429_DuongQuocSon` và collection `devices` đã được xác minh hoạt động. Hiện có 6 thiết bị mẫu: 3 bản ghi đã có sẵn và 3 bản ghi do `npm run seed` thêm (máy chiếu, máy tính, thiết bị âm thanh). Seed dùng upsert theo `deviceId` nên có thể chạy lại an toàn. Tạo database user riêng, giới hạn Network Access phù hợp, rồi đặt URI trong `backend/.env`; không commit `.env`.
 
 ## Render
 
