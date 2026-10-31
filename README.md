@@ -74,12 +74,13 @@ docker run --rm -p 5000:5000 \
 Frontend được cấu hình địa chỉ API tại thời điểm build:
 
 ```sh
-docker build --build-arg VITE_API_BASE_URL='https://<backend-url>/api' \
-	-t <docker_username>/frontend:latest ./frontend
-docker run --rm -p 8080:80 <docker_username>/frontend:latest
+docker build --build-arg VITE_API_BASE_URL='https://api-235429.onrender.com/api' \
+	-t duongquocson/frontend:latest ./frontend
+docker push duongquocson/frontend:latest
+docker run --rm -p 8080:80 duongquocson/frontend:latest
 ```
 
-Backend image đã được publish công khai tại `duongquocson/backend:latest`. Thay `<docker_username>` trong lệnh frontend bằng username Docker Hub của bạn. Đăng nhập Docker Hub bằng CLI trước khi push; không đưa token vào lệnh, file hay repository.
+Hai image đã được publish công khai: `duongquocson/backend:latest` và `duongquocson/frontend:latest`. Đăng nhập Docker Hub bằng CLI trước khi push; không đưa token vào lệnh, file hay repository.
 
 ## MongoDB Atlas
 
@@ -93,7 +94,7 @@ Database Atlas `235429_DuongQuocSon` và collection `devices` đã được xác
 - Backend API: URL Render sau khi triển khai, ví dụ `https://api-235429.onrender.com`
 - GitHub: `https://github.com/<github_username>/235429_DuongQuocSon`
 - Docker Hub backend: `https://hub.docker.com/r/duongquocson/backend`
-- Docker Hub frontend: `https://hub.docker.com/r/<docker_username>/frontend` sau khi publish Câu 6
+- Docker Hub frontend: `https://hub.docker.com/r/duongquocson/frontend`
 
 Các URL ví dụ chỉ là dự kiến; thay bằng URL thực tế trên tài khoản của bạn trước khi nộp.
 
@@ -112,7 +113,7 @@ cd ../frontend && npm run build
 | GitHub repository | `235429_DuongQuocSon` |
 | MongoDB database / collection | `235429_DuongQuocSon` / `devices` |
 | Docker Hub backend image | `duongquocson/backend:latest` |
-| Docker Hub frontend image | Điền sau khi hoàn tất Câu 6 |
+| Docker Hub frontend image | `duongquocson/frontend:latest` |
 | Render services | `api-235429`, `web-235429` |
 | URL frontend / backend | Điền URL thực tế sau triển khai |
 
