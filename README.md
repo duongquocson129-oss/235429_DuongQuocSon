@@ -94,13 +94,13 @@ Database Atlas `235429_DuongQuocSon` và collection `devices` đã được xác
 
 `render.yaml` khai báo hai dịch vụ `api-235429` và `web-235429`. Tạo Blueprint từ repository, nhập `MONGODB_URI` dưới dạng secret khi Render yêu cầu. Sau khi triển khai, kiểm tra `/health` và CRUD trên URL được Render cấp.
 
-- Frontend: URL Render sau khi triển khai, ví dụ `https://web-235429.onrender.com`
-- Backend API: URL Render sau khi triển khai, ví dụ `https://api-235429.onrender.com`
+- Frontend: `https://web-235429.onrender.com` (đã triển khai, HTTP 200)
+- Backend API: `https://api-235429.onrender.com` (cập nhật sau Câu 8)
 - GitHub: `https://github.com/<github_username>/235429_DuongQuocSon`
 - Docker Hub backend: `https://hub.docker.com/r/duongquocson/backend`
 - Docker Hub frontend: `https://hub.docker.com/r/duongquocson/frontend`
 
-Các URL ví dụ chỉ là dự kiến; thay bằng URL thực tế trên tài khoản của bạn trước khi nộp.
+URL backend là địa chỉ dự kiến theo tên service; xác nhận lại sau khi triển khai Câu 8.
 
 ## Kiểm tra
 
@@ -119,7 +119,8 @@ cd ../frontend && npm run build
 | Docker Hub backend image | `duongquocson/backend:latest` |
 | Docker Hub frontend image | `duongquocson/frontend:latest` |
 | Render services | `api-235429`, `web-235429` |
-| URL frontend / backend | Điền URL thực tế sau triển khai |
+| URL frontend | `https://web-235429.onrender.com` |
+| URL backend API | Điền sau khi hoàn tất Câu 8 |
 
 ## Lịch sử commit theo câu
 
