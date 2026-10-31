@@ -66,12 +66,13 @@ Giao diện cung cấp danh sách và tìm kiếm thiết bị, xem chi tiết, 
 Backend (không nhúng thông tin xác thực vào image):
 
 ```sh
-docker build -t <docker_username>/backend:latest ./backend
+docker build -t duongquocson/backend:latest ./backend
+docker push duongquocson/backend:latest
 docker run --rm -p 5000:5000 \
 	-e MONGODB_URI='mongodb+srv://<user>:<password>@<cluster>/' \
 	-e MONGODB_DB='235429_DuongQuocSon' \
 	-e FRONTEND_ORIGIN='http://localhost:8080' \
-	<docker_username>/backend:latest
+	duongquocson/backend:latest
 ```
 
 Frontend được cấu hình địa chỉ API tại thời điểm build:
@@ -82,7 +83,7 @@ docker build --build-arg VITE_API_BASE_URL='https://<backend-url>/api' \
 docker run --rm -p 8080:80 <docker_username>/frontend:latest
 ```
 
-Chỉ thay `<docker_username>` bằng tên Docker Hub của bạn. Đăng nhập Docker Hub bằng CLI trước khi push; không đưa token vào lệnh, file hay repository.
+Backend image đã được publish công khai tại `duongquocson/backend:latest`. Thay `<docker_username>` trong lệnh frontend bằng username Docker Hub của bạn. Đăng nhập Docker Hub bằng CLI trước khi push; không đưa token vào lệnh, file hay repository.
 
 ## MongoDB Atlas
 
@@ -95,7 +96,8 @@ Database Atlas `235429_DuongQuocSon` và collection `devices` đã được xác
 - Frontend: URL Render sau khi triển khai, ví dụ `https://web-235429.onrender.com`
 - Backend API: URL Render sau khi triển khai, ví dụ `https://api-235429.onrender.com`
 - GitHub: `https://github.com/<github_username>/235429_DuongQuocSon`
-- Docker Hub: `https://hub.docker.com/r/<docker_username>/backend` và `/frontend`
+- Docker Hub backend: `https://hub.docker.com/r/duongquocson/backend`
+- Docker Hub frontend: `https://hub.docker.com/r/<docker_username>/frontend` sau khi publish Câu 6
 
 Các URL ví dụ chỉ là dự kiến; thay bằng URL thực tế trên tài khoản của bạn trước khi nộp.
 
@@ -113,7 +115,8 @@ cd ../frontend && npm run build
 | MSSV & họ tên | `235429_DuongQuocSon` |
 | GitHub repository | `235429_DuongQuocSon` |
 | MongoDB database / collection | `235429_DuongQuocSon` / `devices` |
-| Docker Hub images | `<docker_username>/backend`, `<docker_username>/frontend` |
+| Docker Hub backend image | `duongquocson/backend:latest` |
+| Docker Hub frontend image | Điền sau khi hoàn tất Câu 6 |
 | Render services | `api-235429`, `web-235429` |
 | URL frontend / backend | Điền URL thực tế sau triển khai |
 
