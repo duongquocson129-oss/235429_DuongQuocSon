@@ -10,6 +10,8 @@ services:
         sync: false
       - key: MONGODB_DB
         value: 235429_DuongQuocSon
+      - key: STORAGE_MODE
+        value: memory
       - key: FRONTEND_ORIGIN
         value: https://web-235429.onrender.com
 
