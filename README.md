@@ -96,12 +96,17 @@ Database Atlas `235429_DuongQuocSon` và collection `devices` đã được xác
 `render.yaml` khai báo hai dịch vụ `api-235429` và `web-235429`. Backend hiện dùng chế độ memory demo; dữ liệu mất khi Render restart. Muốn lưu bền trên Atlas, chuyển `STORAGE_MODE` sang `mongo` và nhập `MONGODB_URI` dưới dạng secret. Sau khi triển khai, kiểm tra `/health` và CRUD trên URL được Render cấp.
 
 - Frontend: `https://web-235429.onrender.com` (đã triển khai, HTTP 200)
-- Backend API: `https://api-235429.onrender.com` (cập nhật sau Câu 8)
+- Backend API: `https://api-235429.onrender.com` (health HTTP 200)
 - GitHub: `https://github.com/<github_username>/235429_DuongQuocSon`
 - Docker Hub backend: `https://hub.docker.com/r/duongquocson/backend`
 - Docker Hub frontend: `https://hub.docker.com/r/duongquocson/frontend`
 
-URL backend là địa chỉ dự kiến theo tên service; xác nhận lại sau khi triển khai Câu 8.
+## Kiểm tra tổng thể
+
+- Frontend Render trả HTTP 200 và hiển thị danh sách thiết bị từ API.
+- Backend `/health` trả HTTP 200; `/api/devices` trả HTTP 200 với 6 thiết bị tại lần kiểm tra.
+- Backend Render hiện ở chế độ memory demo theo lựa chọn bỏ MongoDB; dữ liệu sẽ mất khi container khởi động lại. Vì vậy triển khai hiện tại chưa đáp ứng yêu cầu lưu bền trên MongoDB Atlas.
+- Backend có 5 test đạt; frontend production build thành công.
 
 ## Kiểm tra
 
@@ -121,7 +126,7 @@ cd ../frontend && npm run build
 | Docker Hub frontend image | `duongquocson/frontend:latest` |
 | Render services | `api-235429`, `web-235429` |
 | URL frontend | `https://web-235429.onrender.com` |
-| URL backend API | Điền sau khi hoàn tất Câu 8 |
+| URL backend API | `https://api-235429.onrender.com` |
 
 ## Lịch sử commit theo câu
 
